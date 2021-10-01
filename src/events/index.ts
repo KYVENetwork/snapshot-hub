@@ -26,6 +26,7 @@ async function processEvents() {
       subscribers
         .filter(
           subscriber =>
+            // @ts-ignore
             !subscriber.spaces || subscriber.spaces.includes(event.space)
         )
         .map(subscriber => sendEvent(event, subscriber.url))
