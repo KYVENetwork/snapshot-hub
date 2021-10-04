@@ -19,7 +19,7 @@ async function sendEvent(event, to) {
     },
     body: JSON.stringify(event)
   });
-  return res.json();
+  return res;
 }
 
 async function processEvents() {
