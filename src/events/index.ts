@@ -1,6 +1,10 @@
+import { Wallet } from '@ethersproject/wallet';
 import fetch from 'cross-fetch';
 import db from '../helpers/mysql';
 import subscribers from './subscribers.json';
+
+const privateKey = process.env.RELAYER_PK || '';
+const wallet = new Wallet(privateKey);
 
 const delay = 5;
 const interval = 30;
@@ -9,7 +13,10 @@ const serviceEvents = parseInt(process.env.SERVICE_EVENTS || '0');
 async function sendEvent(event, to) {
   const res = await fetch(to, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: await wallet.signMessage(JSON.stringify(event))
+    },
     body: JSON.stringify(event)
   });
   return res.json();
