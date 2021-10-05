@@ -15,7 +15,7 @@ const config: any = {
 };
 
 export async function pinJson(key: string, body) {
-  let ipfsHash: string;
+  /*let ipfsHash: string;
 
   if (service === 'fleek') {
     const input = config;
@@ -35,5 +35,6 @@ export async function pinJson(key: string, body) {
       .catch(e => console.error('Arweave error', e));
   }
 
-  return ipfsHash;
+  return ipfsHash;*/
+  return "";
 }

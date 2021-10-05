@@ -154,14 +154,15 @@ export async function storeSettings(space, body) {
   const msg = JSON.parse(body.msg);
 
   const key = `registry/${body.address}/${space}`;
-  const result = await fleek.upload({
-    apiKey: process.env.FLEEK_API_KEY || '',
-    apiSecret: process.env.FLEEK_API_SECRET || '',
-    // bucket: 'snapshot-team-bucket',
-    key,
-    data: JSON.stringify(msg.payload)
-  });
-  const ipfsHash = result.hashV0;
+  // const result = await fleek.upload({
+  //   apiKey: process.env.FLEEK_API_KEY || '',
+  //   apiSecret: process.env.FLEEK_API_SECRET || '',
+  //   // bucket: 'snapshot-team-bucket',
+  //   key,
+  //   data: JSON.stringify(msg.payload)
+  // });
+  // const ipfsHash = result.hashV0;
+  const ipfsHash = "";
   console.log('Settings updated', space, ipfsHash);
 
   await addOrUpdateSpace(space, msg.payload);
