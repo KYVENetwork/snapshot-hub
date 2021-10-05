@@ -164,6 +164,7 @@ router.post('/msg', async (req, res) => {
     const result = await ingestor(req.body, 'typed-data');
     return res.json(result);
   } catch (e) {
+    console.log(e);
     return sendError(res, e);
   }
 });
